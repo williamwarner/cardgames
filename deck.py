@@ -1,7 +1,12 @@
+import random
+
 class Card(object):
+    """
+    TODO:MAKE CARD VALUE LIST
+    """
     suit = ""
     value = 0
-    
+
     def __init__(self, suit, value):
         self.suit = suit
         self.value = value
@@ -11,6 +16,7 @@ class CardDeck(object):
     numDecks = 0
     numCards = 0
     deck = []
+    altName = {14:"Ace", 13:"King", 12:"Queen", 11:"Jack"}
     
     def buildDeck(self):
         pass
@@ -25,13 +31,21 @@ class CardDeck(object):
             
         
     def shuffle(self):
-        pass
+        random.shuffle(self.deck)
     
     def sort(self):
         pass
     
     def takeTop(self):
-        pass
+        return self.deck.pop(0)
     
     def printDeck(self):
-        pass
+        decklist = ""
+        for card in self.deck:
+            if card.value in self.altName.keys():
+                decklist += self.altName[card.value] + " " + card.suit
+            else:
+                decklist += str(card.value) + " " + card.suit
+            if card != self.deck[-1]:
+                decklist += ", "
+        print(decklist + '\n')
