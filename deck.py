@@ -2,7 +2,7 @@ import random
 
 class Card(object):
     """
-    TODO:MAKE CARD VALUE LIST
+    how to handle ace high or low?
     """
     suit = ""
     value = 0
@@ -17,6 +17,7 @@ class CardDeck(object):
     numCards = 0
     deck = []
     altName = {14:"Ace", 13:"King", 12:"Queen", 11:"Jack"}
+    suitOrder = {"spade":4, "heart":3, "diamond":2, "club":1}
     
     def buildDeck(self):
         pass
@@ -25,7 +26,7 @@ class CardDeck(object):
         self.numDecks = numDecks
         self.numCards = numDecks*52
         for _ in range(numDecks):
-            for s in ["spade","diamond","heart","club"]:
+            for s in ["spade","heart","diamond","club"]:
                 for i in range(14,1,-1):
                     self.deck.append(Card(s, i))
             
@@ -33,8 +34,14 @@ class CardDeck(object):
     def shuffle(self):
         random.shuffle(self.deck)
     
-    def sort(self):
-        pass
+    def sort(self, sortType="suit"):
+        """
+        Can take type suit (order by suit ranking first) or value (order by value first)
+        """
+        if sortType=="suit":
+            self.deck.sort(key = lambda x: (self.suitOrder[x.suit], x.value), reverse=True)
+        elif sortType=="value":
+            self.deck.sort(key = lambda x: (x.value, self.suitOrder[x.suit]), reverse=True)
     
     def takeTop(self):
         return self.deck.pop(0)
