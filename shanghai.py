@@ -9,6 +9,6 @@ class shanghai():
     def __init__(self, numHands):
         self.numHands = numHands
         deck = CardDeck(2)
-        self.hands = deck.deal(numHands)
+        self.hands = deck.deal(numHands, 9)
         
     
