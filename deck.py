@@ -42,6 +42,11 @@ class Hand(object):
         elif sortType=="value":
             self.hand.sort(key = lambda x: (x.value, self.suitOrder[x.suit]), reverse=True)
             
+    def take(self, card):
+        if card in self.hand:
+            return self.hand.remove(card)
+        return None
+            
     def printHand(self):
         handlist = ""
         for card in self.hand:
