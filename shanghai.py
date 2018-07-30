@@ -11,4 +11,8 @@ class shanghai():
         deck = CardDeck(2)
         self.hands = deck.deal(numHands, 9)
         
+    def isValid():
+        pass
+    
+        
     
